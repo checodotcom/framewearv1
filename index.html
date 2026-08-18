@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Framewear</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <h1 class="wordmark" data-brand-name></h1>
+      <button class="hamburger" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="sr-only">Menu</span>
+      </button>
+    </header>
+
+    <nav class="site-nav" id="site-nav">
+      <a href="#" class="nav-link">home</a>
+      <a href="#" class="nav-link">products</a>
+      <a href="#" class="nav-link">about</a>
+      <a href="#" class="nav-link">contact</a>
+    </nav>
+
+    <main class="product-main">
+      <img class="product-image" id="product-image" src="" alt="">
+      <div class="price-row">
+        <span class="price" id="product-price"></span>
+        <button class="buy-btn" type="button">Buy</button>
+      </div>
+      <div class="size-select">
+        <button class="more-btn" id="size-toggle" type="button" aria-expanded="false" aria-controls="size-dropdown">more</button>
+        <ul class="size-dropdown" id="size-dropdown" hidden></ul>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
