@@ -77,10 +77,12 @@ a, button {
   display: none;
 }
 
-/* top/left must match .page's padding-top/padding-left above, so the nav's top edge lands level with .wordmark's top edge */
+/* left matches .page's padding-left above, so the nav sits at the page's left edge.
+   top is offset past .page's padding-top so the first nav link's vertical center
+   lines up with the wordmark's vertical center (measured, not top-aligned). */
 .site-nav {
   position: absolute;
-  top: 48px;
+  top: 58px;
   left: 40px;
   display: flex;
   flex-direction: column;
