@@ -94,15 +94,14 @@ function setupSizeDropdown() {
   const toggle = document.getElementById("size-toggle");
   const dropdown = document.getElementById("size-dropdown");
 
+  function closeDropdown() {
+    dropdown.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+  }
+
   toggle.addEventListener("click", () => {
-    const isHidden = dropdown.hasAttribute("hidden");
-    if (isHidden) {
-      dropdown.removeAttribute("hidden");
-      toggle.setAttribute("aria-expanded", "true");
-    } else {
-      dropdown.setAttribute("hidden", "");
-      toggle.setAttribute("aria-expanded", "false");
-    }
+    const isOpen = dropdown.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", String(isOpen));
   });
 
   dropdown.addEventListener("click", (event) => {
@@ -113,6 +112,22 @@ function setupSizeDropdown() {
       option.classList.toggle("is-selected", selected);
       option.setAttribute("aria-pressed", String(selected));
     });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && dropdown.classList.contains("is-open")) {
+      closeDropdown();
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (
+      dropdown.classList.contains("is-open") &&
+      !dropdown.contains(event.target) &&
+      event.target !== toggle
+    ) {
+      closeDropdown();
+    }
   });
 }
 
