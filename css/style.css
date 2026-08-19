@@ -63,8 +63,8 @@ a, button {
 
 .wordmark-logo {
   display: inline-block;
-  width: 200px;
-  height: auto;
+  width: auto;
+  height: 64px;
 }
 
 .hamburger {
@@ -76,7 +76,7 @@ a, button {
    lines up with the wordmark's vertical center (measured, not top-aligned). */
 .site-nav {
   position: absolute;
-  top: 87px;
+  top: 70.5px;
   left: 40px;
   display: flex;
   flex-direction: column;
@@ -245,7 +245,8 @@ a, button {
   }
 
   .wordmark-logo {
-    width: 140px;
+    width: auto;
+    height: 44px;
   }
 
   .hamburger {
@@ -254,7 +255,7 @@ a, button {
     gap: 4px;
     position: absolute;
     right: 0;
-    top: 2px;
+    top: 11px;
     border: none;
     background: none;
     padding: 4px;
@@ -285,7 +286,7 @@ a, button {
   .site-nav {
     display: flex;
     position: absolute;
-    top: 56px;
+    top: 76px;
     right: 20px;
     left: auto;
     background: #ffffff;
