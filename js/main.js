@@ -1,4 +1,6 @@
-const BRAND_NAME = "Framewear";
+const BRAND_NAME = "panoramica";
+const COPYRIGHT_YEAR = 2026;
+const DEVELOPER_CREDIT = "checodotcom";
 
 const PRODUCT = {
   name: "1",
@@ -16,9 +18,13 @@ function formatPrice(amount) {
 
 function renderBrand() {
   document.title = BRAND_NAME;
-  document.querySelectorAll("[data-brand-name]").forEach((el) => {
-    el.textContent = BRAND_NAME;
-  });
+  const logo = document.getElementById("brand-logo");
+  if (logo) logo.alt = BRAND_NAME;
+
+  const footerText = document.getElementById("footer-text");
+  if (footerText) {
+    footerText.textContent = `${BRAND_NAME} © ${COPYRIGHT_YEAR}. developed by ${DEVELOPER_CREDIT}`;
+  }
 }
 
 function renderProduct() {

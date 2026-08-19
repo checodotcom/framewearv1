@@ -1,12 +1,4 @@
 @font-face {
-  font-family: 'Panchang';
-  src: url('../assets/fonts/panchang/panchang-semibold.woff2') format('woff2');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
   font-family: 'General Sans';
   src: url('../assets/fonts/general-sans/general-sans-regular.woff2') format('woff2');
   font-weight: 400;
@@ -66,11 +58,13 @@ a, button {
 }
 
 .wordmark {
-  font-family: 'Panchang', serif;
-  font-weight: 600;
-  font-size: 30px;
-  letter-spacing: 0.02em;
   margin: 0;
+}
+
+.wordmark-logo {
+  display: inline-block;
+  width: 200px;
+  height: auto;
 }
 
 .hamburger {
@@ -82,7 +76,7 @@ a, button {
    lines up with the wordmark's vertical center (measured, not top-aligned). */
 .site-nav {
   position: absolute;
-  top: 58px;
+  top: 87px;
   left: 40px;
   display: flex;
   flex-direction: column;
@@ -224,6 +218,20 @@ a, button {
   background: #6b6b6b;
 }
 
+.site-footer {
+  margin-top: 96px;
+  padding-top: 24px;
+  text-align: center;
+  border-top: 1px solid #e5e5e5;
+}
+
+.footer-text {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: #a3a3a3;
+}
+
 @media (max-width: 768px) {
   .page {
     padding: 24px 20px 40px;
@@ -236,8 +244,8 @@ a, button {
     margin-bottom: 134px;
   }
 
-  .wordmark {
-    font-size: 22px;
+  .wordmark-logo {
+    width: 140px;
   }
 
   .hamburger {
@@ -304,6 +312,10 @@ a, button {
 
   .product-image {
     width: 190px;
+  }
+
+  .site-footer {
+    margin-top: 64px;
   }
 }
 
