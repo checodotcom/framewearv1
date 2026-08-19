@@ -28,8 +28,29 @@
       <a href="#" class="nav-link">contact</a>
     </nav>
 
-    <main class="product-main">
-      <img class="product-image" id="product-image" src="" alt="">
+    <main class="products-main">
+      <div class="carousel" id="carousel">
+        <button class="carousel-arrow carousel-arrow--prev" id="carousel-prev" type="button" aria-label="Previous product">
+          <span class="carousel-arrow-icon"></span>
+        </button>
+
+        <div class="carousel-track" id="carousel-track">
+          <div class="carousel-item" data-index="0">
+            <img src="" alt="">
+          </div>
+          <div class="carousel-item" data-index="1">
+            <img src="" alt="">
+          </div>
+          <div class="carousel-item" data-index="2">
+            <img src="" alt="">
+          </div>
+        </div>
+
+        <button class="carousel-arrow carousel-arrow--next" id="carousel-next" type="button" aria-label="Next product">
+          <span class="carousel-arrow-icon"></span>
+        </button>
+      </div>
+
       <div class="price-row">
         <span class="price" id="product-price"></span>
         <button class="buy-btn" type="button">Buy</button>
@@ -46,6 +67,6 @@
   </div>
 
   <script src="js/common.js" defer></script>
-  <script src="js/main.js" defer></script>
+  <script src="js/products.js" defer></script>
 </body>
 </html>
