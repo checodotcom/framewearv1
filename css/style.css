@@ -6,6 +6,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'General Sans';
+  src: url('../assets/fonts/general-sans/general-sans-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -260,6 +268,7 @@ a, button {
   background: transparent;
   padding: 8px 26px;
   font-size: 13px;
+  font-weight: 700;
   letter-spacing: 0.04em;
   cursor: pointer;
   transition: background-color 0.15s ease, color 0.15s ease;
@@ -268,6 +277,16 @@ a, button {
 .buy-btn:hover {
   background: #6b6b6b;
   color: #ffffff;
+}
+
+.buy-btn-label {
+  display: inline-block;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.buy-btn-label.is-hidden {
+  opacity: 0;
 }
 
 .size-select {
@@ -492,6 +511,10 @@ a, button {
   }
 
   .carousel-item {
+    transition: none;
+  }
+
+  .buy-btn-label {
     transition: none;
   }
 }

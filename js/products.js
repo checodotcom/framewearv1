@@ -4,7 +4,7 @@ const PRODUCTS = [
     description: "",
     price: 1000000,
     currency: "$",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["REGULAR", "+"],
     image: "assets/images/producto-1.png",
     altText: `${BRAND_NAME} Jacket Reflective`,
   },
@@ -13,7 +13,7 @@ const PRODUCTS = [
     description: "",
     price: 850000,
     currency: "$",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["REGULAR", "+"],
     image: "assets/images/producto-2.png",
     altText: `${BRAND_NAME} Jacket 2`,
   },
@@ -22,7 +22,7 @@ const PRODUCTS = [
     description: "",
     price: 975000,
     currency: "$",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["REGULAR", "+"],
     image: "assets/images/producto-3.png",
     altText: `${BRAND_NAME} Jacket 3`,
   },
@@ -88,6 +88,23 @@ function goToProduct(index) {
   renderActiveProduct();
 }
 
+function setupSoldOutButton() {
+  const btn = document.getElementById("buy-btn");
+  const label = document.getElementById("buy-btn-label");
+  const REAPPEAR_DELAY = 500;
+  let isAnimating = false;
+
+  btn.addEventListener("click", () => {
+    if (isAnimating) return;
+    isAnimating = true;
+    label.classList.add("is-hidden");
+    setTimeout(() => {
+      label.classList.remove("is-hidden");
+      isAnimating = false;
+    }, REAPPEAR_DELAY);
+  });
+}
+
 function setupCarousel() {
   const carousel = document.getElementById("carousel");
   const track = document.getElementById("carousel-track");
@@ -138,6 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCarouselPositions();
   renderActiveProduct();
   setupCarousel();
+  setupSoldOutButton();
   setupNavLinks();
   setupMobileMenu();
   setupSizeDropdown();
