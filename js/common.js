@@ -11,6 +11,9 @@ function renderBrand() {
   const logo = document.getElementById("brand-logo");
   if (logo) logo.alt = BRAND_NAME;
 
+  const siteTitle = document.getElementById("site-title");
+  if (siteTitle) siteTitle.textContent = BRAND_NAME;
+
   const footerText = document.getElementById("footer-text");
   if (footerText) {
     footerText.textContent = `${BRAND_NAME} © ${COPYRIGHT_YEAR}. developed by ${DEVELOPER_CREDIT}`;
@@ -27,40 +30,51 @@ function setupNavLinks() {
   });
 }
 
-function setupMobileMenu() {
-  const toggle = document.getElementById("menu-toggle");
-  const nav = document.getElementById("site-nav");
+function setupNavDropdown(toggleId, dropdownId) {
+  const toggle = document.getElementById(toggleId);
+  const dropdown = document.getElementById(dropdownId);
+  if (!toggle || !dropdown) return;
 
-  function closeMenu() {
-    nav.classList.remove("nav--open");
+  function closeMenu({ returnFocus = true } = {}) {
+    dropdown.classList.remove("is-open");
     toggle.setAttribute("aria-expanded", "false");
-    toggle.focus();
+    if (returnFocus) toggle.focus();
   }
 
-  toggle.addEventListener("click", () => {
-    const isOpen = nav.classList.toggle("nav--open");
+  toggle.addEventListener("click", (event) => {
+    const isOpen = dropdown.classList.toggle("is-open");
     toggle.setAttribute("aria-expanded", String(isOpen));
+    // event.detail is 0 for a keyboard-triggered click (Enter/Space) and
+    // >=1 for a real mouse click. Only move focus for the keyboard case,
+    // so mouse users don't get a focus-visible ring they didn't ask for.
+    const isKeyboardActivated = event.detail === 0;
     if (isOpen) {
-      const firstLink = nav.querySelector(".nav-link");
-      if (firstLink) firstLink.focus();
-    } else {
+      if (isKeyboardActivated) {
+        const firstLink = dropdown.querySelector(".nav-link");
+        if (firstLink) firstLink.focus();
+      } else {
+        toggle.blur();
+      }
+    } else if (isKeyboardActivated) {
       toggle.focus();
+    } else {
+      toggle.blur();
     }
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && nav.classList.contains("nav--open")) {
+    if (event.key === "Escape" && dropdown.classList.contains("is-open")) {
       closeMenu();
     }
   });
 
   document.addEventListener("click", (event) => {
     if (
-      nav.classList.contains("nav--open") &&
-      !nav.contains(event.target) &&
-      event.target !== toggle
+      dropdown.classList.contains("is-open") &&
+      !dropdown.contains(event.target) &&
+      !toggle.contains(event.target)
     ) {
-      closeMenu();
+      closeMenu({ returnFocus: false });
     }
   });
 }

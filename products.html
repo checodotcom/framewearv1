@@ -10,25 +10,20 @@
 <body>
   <div class="page">
     <header class="site-header">
-      <h1 class="wordmark">
-        <a href="index.html" class="wordmark-link">
-          <img class="wordmark-logo" id="brand-logo" src="assets/images/PanoramicaCorto.png" alt="">
-        </a>
-      </h1>
-      <button class="hamburger" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="sr-only">Menu</span>
-      </button>
+      <h1 class="wordmark" id="site-title"></h1>
+      <div class="nav-trigger-wrap header-trigger">
+        <button class="nav-trigger" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav-dropdown">
+          <img class="nav-trigger-img" id="brand-logo" src="assets/images/PanoramicaCorto.png" alt="">
+          <span class="sr-only">Menu</span>
+        </button>
+        <nav class="dropdown-nav" id="site-nav-dropdown">
+          <a href="index.html" class="nav-link">home</a>
+          <a href="products.html" class="nav-link">products</a>
+          <a href="#" class="nav-link">about</a>
+          <a href="#" class="nav-link">contact</a>
+        </nav>
+      </div>
     </header>
-
-    <nav class="site-nav" id="site-nav">
-      <a href="index.html" class="nav-link">home</a>
-      <a href="products.html" class="nav-link">products</a>
-      <a href="#" class="nav-link">about</a>
-      <a href="#" class="nav-link">contact</a>
-    </nav>
 
     <main class="products-main">
       <div class="carousel" id="carousel">

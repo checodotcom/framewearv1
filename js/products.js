@@ -205,6 +205,6 @@ document.addEventListener("DOMContentLoaded", () => {
   setupSoldOutButton();
   setupInfoDropdown();
   setupNavLinks();
-  setupMobileMenu();
+  setupNavDropdown("nav-toggle", "site-nav-dropdown");
   setupSizeDropdown();
 });

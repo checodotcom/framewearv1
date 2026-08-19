@@ -60,42 +60,66 @@ a, button {
 }
 
 .site-header {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 185px;
   position: relative;
 }
 
 .wordmark {
   margin: 0;
+  font-size: 26px;
 }
 
-.wordmark-link {
-  display: inline-block;
+.nav-trigger-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav-trigger {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
   line-height: 0;
 }
 
-.wordmark-logo {
+.nav-trigger-img {
   display: inline-block;
   width: auto;
   height: 64px;
 }
 
-.hamburger {
-  display: none;
-}
-
-/* left matches .page's padding-left above, so the nav sits at the page's left edge.
-   top is offset past .page's padding-top so the first nav link's vertical center
-   lines up with the wordmark's vertical center (measured, not top-aligned). */
-.site-nav {
+.dropdown-nav {
   position: absolute;
-  top: 70.5px;
-  left: 40px;
+  top: 100%;
+  margin-top: 8px;
   display: flex;
   flex-direction: column;
   gap: 32px;
-  margin: 0;
-  padding: 0;
+  padding: 14px 20px;
+  border: 1px solid #e5e5e5;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  z-index: 10;
+  transform-origin: top center;
+  transform: scale(0.85);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.18s ease, opacity 0.18s ease, visibility 0s linear 0.18s;
+}
+
+.dropdown-nav.is-open {
+  transform: scale(1);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: transform 0.18s ease, opacity 0.18s ease, visibility 0s linear 0s;
 }
 
 .nav-link {
@@ -128,17 +152,36 @@ a, button {
   margin: 0 auto;
 }
 
-.home-word {
+.nav-trigger-wrap.home-trigger {
   position: absolute;
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  margin: 0;
-  font-size: 42px;
-  font-weight: 400;
-  letter-spacing: 0.02em;
-  color: #6b6b6b;
-  white-space: nowrap;
+}
+
+.nav-trigger-wrap.header-trigger {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.header-trigger .dropdown-nav {
+  left: 0;
+  transform-origin: top left;
+}
+
+@media (max-width: 768px) {
+  .nav-trigger-wrap.header-trigger {
+    left: auto;
+    right: 0;
+  }
+
+  .header-trigger .dropdown-nav {
+    left: auto;
+    right: 0;
+    transform-origin: top right;
+  }
 }
 
 .products-main {
@@ -421,81 +464,12 @@ a, button {
   }
 
   .site-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin-bottom: 134px;
   }
 
-  .wordmark-logo {
+  .nav-trigger-img {
     width: auto;
     height: 44px;
-  }
-
-  .hamburger {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    position: absolute;
-    right: 0;
-    top: 11px;
-    border: none;
-    background: none;
-    padding: 4px;
-    cursor: pointer;
-  }
-
-  .hamburger-line {
-    width: 20px;
-    height: 2px;
-    background: #6b6b6b;
-    display: block;
-    transform-origin: center;
-    transition: transform 0.25s ease, opacity 0.25s ease;
-  }
-
-  .hamburger[aria-expanded="true"] .hamburger-line:nth-child(1) {
-    transform: translateY(6px) rotate(45deg);
-  }
-
-  .hamburger[aria-expanded="true"] .hamburger-line:nth-child(2) {
-    opacity: 0;
-  }
-
-  .hamburger[aria-expanded="true"] .hamburger-line:nth-child(3) {
-    transform: translateY(-6px) rotate(-45deg);
-  }
-
-  .site-nav {
-    display: flex;
-    position: absolute;
-    top: 76px;
-    right: 20px;
-    left: auto;
-    background: #ffffff;
-    border: 1px solid #e5e5e5;
-    border-radius: 14px;
-    padding: 14px 20px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-    z-index: 10;
-    transform-origin: top right;
-    transform: scale(0.85);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: transform 0.18s ease, opacity 0.18s ease, visibility 0s linear 0.18s;
-  }
-
-  .site-nav.nav--open {
-    transform: scale(1);
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transition: transform 0.18s ease, opacity 0.18s ease, visibility 0s linear 0s;
-  }
-
-  .home-word {
-    font-size: 33px;
   }
 
   .carousel {
@@ -534,11 +508,7 @@ a, button {
     transition: none;
   }
 
-  .site-nav {
-    transition: none;
-  }
-
-  .hamburger-line {
+  .dropdown-nav {
     transition: none;
   }
 
