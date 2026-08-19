@@ -77,6 +77,14 @@ function setupSizeDropdown() {
   toggle.addEventListener("click", () => {
     const isOpen = dropdown.classList.toggle("is-open");
     toggle.setAttribute("aria-expanded", String(isOpen));
+    if (isOpen) {
+      const infoDropdown = document.getElementById("info-dropdown");
+      const infoToggle = document.getElementById("info-toggle");
+      if (infoDropdown && infoToggle) {
+        infoDropdown.classList.remove("is-open");
+        infoToggle.setAttribute("aria-expanded", "false");
+      }
+    }
   });
 
   dropdown.addEventListener("click", (event) => {

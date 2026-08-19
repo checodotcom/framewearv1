@@ -1,28 +1,31 @@
+const PLACEHOLDER_DESCRIPTION =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+
 const PRODUCTS = [
   {
-    name: "1",
-    description: "",
+    name: "Ejercicio 1",
+    description: PLACEHOLDER_DESCRIPTION,
     price: 1000000,
     currency: "$",
-    sizes: ["REGULAR", "+"],
+    sizes: ["REGULAR", "PLUS"],
     image: "assets/images/producto-1.png",
     altText: `${BRAND_NAME} Jacket Reflective`,
   },
   {
-    name: "2",
-    description: "",
+    name: "Ejercicio 2",
+    description: PLACEHOLDER_DESCRIPTION,
     price: 850000,
     currency: "$",
-    sizes: ["REGULAR", "+"],
+    sizes: ["REGULAR", "PLUS"],
     image: "assets/images/producto-2.png",
     altText: `${BRAND_NAME} Jacket 2`,
   },
   {
-    name: "3",
-    description: "",
+    name: "Ejercicio 3",
+    description: PLACEHOLDER_DESCRIPTION,
     price: 975000,
     currency: "$",
-    sizes: ["REGULAR", "+"],
+    sizes: ["REGULAR", "PLUS"],
     image: "assets/images/producto-3.png",
     altText: `${BRAND_NAME} Jacket 3`,
   },
@@ -80,6 +83,13 @@ function renderActiveProduct() {
     li.appendChild(btn);
     dropdown.appendChild(li);
   });
+
+  const infoDropdown = document.getElementById("info-dropdown");
+  const infoToggle = document.getElementById("info-toggle");
+  infoDropdown.classList.remove("is-open");
+  infoToggle.setAttribute("aria-expanded", "false");
+  document.getElementById("info-title").textContent = product.name;
+  document.getElementById("info-description").textContent = product.description;
 }
 
 function goToProduct(index) {
@@ -102,6 +112,43 @@ function setupSoldOutButton() {
       label.classList.remove("is-hidden");
       isAnimating = false;
     }, REAPPEAR_DELAY);
+  });
+}
+
+function setupInfoDropdown() {
+  const toggle = document.getElementById("info-toggle");
+  const dropdown = document.getElementById("info-dropdown");
+
+  function closeDropdown() {
+    dropdown.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+  }
+
+  toggle.addEventListener("click", () => {
+    const isOpen = dropdown.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", String(isOpen));
+    if (isOpen) {
+      const sizeDropdown = document.getElementById("size-dropdown");
+      const sizeToggle = document.getElementById("size-toggle");
+      sizeDropdown.classList.remove("is-open");
+      sizeToggle.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && dropdown.classList.contains("is-open")) {
+      closeDropdown();
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (
+      dropdown.classList.contains("is-open") &&
+      !dropdown.contains(event.target) &&
+      event.target !== toggle
+    ) {
+      closeDropdown();
+    }
   });
 }
 
@@ -156,6 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderActiveProduct();
   setupCarousel();
   setupSoldOutButton();
+  setupInfoDropdown();
   setupNavLinks();
   setupMobileMenu();
   setupSizeDropdown();
