@@ -5,3 +5,5 @@
 # working/reference material not part of the deployed site
 _source/
 docs/
+
+.vercel
