@@ -8,8 +8,6 @@ const PRODUCTS = [
     price: 1000000,
     currency: "$",
     sizes: ["REGULAR", "PLUS"],
-    image: "assets/images/producto-1.png",
-    altText: `${BRAND_NAME} Jacket Reflective`,
   },
   {
     name: "Ejercicio 2",
@@ -17,8 +15,6 @@ const PRODUCTS = [
     price: 850000,
     currency: "$",
     sizes: ["REGULAR", "PLUS"],
-    image: "assets/images/producto-2.png",
-    altText: `${BRAND_NAME} Jacket 2`,
   },
   {
     name: "Ejercicio 3",
@@ -26,21 +22,10 @@ const PRODUCTS = [
     price: 975000,
     currency: "$",
     sizes: ["REGULAR", "PLUS"],
-    image: "assets/images/producto-3.png",
-    altText: `${BRAND_NAME} Jacket 3`,
   },
 ];
 
 let activeIndex = 0;
-
-function renderCarouselItems() {
-  document.querySelectorAll(".carousel-item").forEach((item) => {
-    const i = Number(item.dataset.index);
-    const img = item.querySelector("img");
-    img.src = PRODUCTS[i].image;
-    img.alt = PRODUCTS[i].altText;
-  });
-}
 
 function renderCarouselPositions() {
   document.querySelectorAll(".carousel-item").forEach((item) => {
@@ -198,7 +183,6 @@ function setupCarousel() {
 
 document.addEventListener("DOMContentLoaded", () => {
   renderBrand();
-  renderCarouselItems();
   renderCarouselPositions();
   renderActiveProduct();
   setupCarousel();
