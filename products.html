@@ -19,13 +19,23 @@
         <nav class="dropdown-nav" id="site-nav-dropdown">
           <a href="index.html" class="nav-link">home</a>
           <a href="products.html" class="nav-link">products</a>
-          <a href="#" class="nav-link">about</a>
-          <a href="#" class="nav-link">contact</a>
+          <a href="about.html" class="nav-link">about</a>
+          <a href="contact.html" class="nav-link">contact</a>
         </nav>
       </div>
     </header>
 
     <main class="products-main">
+      <div class="detail-select">
+        <button class="detail-trigger" id="detail-toggle" type="button" aria-expanded="false" aria-controls="detail-dropdown" aria-label="View product detail images">
+          <svg class="detail-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-linejoin="round"/>
+            <path d="M19.6464 20.3536C19.8417 20.5488 20.1583 20.5488 20.3536 20.3536C20.5488 20.1583 20.5488 19.8417 20.3536 19.6464L19.6464 20.3536ZM20.3536 19.6464L15.3536 14.6464L14.6464 15.3536L19.6464 20.3536L20.3536 19.6464Z" fill="currentColor"/>
+          </svg>
+        </button>
+        <div class="detail-dropdown" id="detail-dropdown"></div>
+      </div>
+
       <div class="carousel" id="carousel">
         <button class="carousel-arrow carousel-arrow--prev" id="carousel-prev" type="button" aria-label="Previous product">
           <span class="carousel-arrow-icon"></span>
@@ -62,7 +72,7 @@
         <button class="more-btn" id="info-toggle" type="button" aria-expanded="false" aria-controls="info-dropdown">more</button>
         <div class="info-dropdown" id="info-dropdown">
           <p class="info-title" id="info-title"></p>
-          <p class="info-description" id="info-description"></p>
+          <div class="info-description" id="info-description"></div>
         </div>
       </div>
     </main>

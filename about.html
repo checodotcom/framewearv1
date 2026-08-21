@@ -11,20 +11,23 @@
   <div class="page">
     <header class="site-header">
       <h1 class="wordmark" id="site-title"></h1>
-    </header>
-
-    <main class="home-main">
-      <div class="nav-trigger-wrap home-trigger">
-        <button class="nav-trigger" id="home-nav-toggle" type="button" aria-expanded="false" aria-controls="home-nav-dropdown">
-          <img class="nav-trigger-img" src="assets/images/PanoramicaCorto.png" alt="">
+      <div class="nav-trigger-wrap header-trigger">
+        <button class="nav-trigger" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav-dropdown">
+          <img class="nav-trigger-img" id="brand-logo" src="assets/images/PanoramicaCorto.png" alt="">
           <span class="sr-only">Menu</span>
         </button>
-        <nav class="dropdown-nav" id="home-nav-dropdown">
+        <nav class="dropdown-nav" id="site-nav-dropdown">
           <a href="index.html" class="nav-link">home</a>
           <a href="products.html" class="nav-link">products</a>
           <a href="about.html" class="nav-link">about</a>
           <a href="contact.html" class="nav-link">contact</a>
         </nav>
+      </div>
+    </header>
+
+    <main class="message-main">
+      <div class="message-wrap">
+        <p class="page-message">there’s nothing truly left to invent, just great references and strong execution, which is the foundation of any product under the panoramica name.</p>
       </div>
     </main>
 
@@ -34,6 +37,6 @@
   </div>
 
   <script src="js/common.js" defer></script>
-  <script src="js/main.js" defer></script>
+  <script src="js/page.js" defer></script>
 </body>
 </html>

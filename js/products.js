@@ -3,21 +3,32 @@ const PLACEHOLDER_DESCRIPTION =
 
 const PRODUCTS = [
   {
-    name: "Ejercicio 1",
-    description: PLACEHOLDER_DESCRIPTION,
+    name: "Exercise 1",
+    details: [
+      { label: "Material", text: "100% high-grade wool body." },
+      {
+        label: "Technical details",
+        text: "Heavyweight, water-repellent green nylon utility pockets on the front.",
+      },
+      {
+        label: "Fit & origin",
+        text: "Re-engineered from a 1937 archival silhouette, refined for a contemporary fit.",
+      },
+    ],
     price: 1000000,
     currency: "$",
     sizes: ["REGULAR", "PLUS"],
+    detailImage: "assets/images/ChatGPT Image Aug 20, 2026, 03_50_29 PM.png",
   },
   {
-    name: "Ejercicio 2",
+    name: "Exercise 2",
     description: PLACEHOLDER_DESCRIPTION,
     price: 850000,
     currency: "$",
     sizes: ["REGULAR", "PLUS"],
   },
   {
-    name: "Ejercicio 3",
+    name: "Exercise 3",
     description: PLACEHOLDER_DESCRIPTION,
     price: 975000,
     currency: "$",
@@ -74,7 +85,41 @@ function renderActiveProduct() {
   infoDropdown.classList.remove("is-open");
   infoToggle.setAttribute("aria-expanded", "false");
   document.getElementById("info-title").textContent = product.name;
-  document.getElementById("info-description").textContent = product.description;
+
+  const infoDescription = document.getElementById("info-description");
+  infoDescription.innerHTML = "";
+  if (product.details) {
+    product.details.forEach(({ label, text }) => {
+      const p = document.createElement("p");
+      const strong = document.createElement("strong");
+      strong.textContent = `${label}: `;
+      p.appendChild(strong);
+      p.appendChild(document.createTextNode(text));
+      infoDescription.appendChild(p);
+    });
+  } else {
+    const p = document.createElement("p");
+    p.textContent = product.description;
+    infoDescription.appendChild(p);
+  }
+
+  const detailDropdown = document.getElementById("detail-dropdown");
+  const detailToggle = document.getElementById("detail-toggle");
+  detailDropdown.classList.remove("is-open");
+  detailToggle.setAttribute("aria-expanded", "false");
+  detailDropdown.innerHTML = "";
+  if (product.detailImage) {
+    const img = document.createElement("img");
+    img.className = "detail-image";
+    img.src = product.detailImage;
+    img.alt = `${product.name} detail`;
+    detailDropdown.appendChild(img);
+  } else {
+    const missing = document.createElement("p");
+    missing.className = "detail-missing";
+    missing.textContent = "missing images";
+    detailDropdown.appendChild(missing);
+  }
 }
 
 function goToProduct(index) {
@@ -117,6 +162,11 @@ function setupInfoDropdown() {
       const sizeToggle = document.getElementById("size-toggle");
       sizeDropdown.classList.remove("is-open");
       sizeToggle.setAttribute("aria-expanded", "false");
+
+      const detailDropdown = document.getElementById("detail-dropdown");
+      const detailToggle = document.getElementById("detail-toggle");
+      detailDropdown.classList.remove("is-open");
+      detailToggle.setAttribute("aria-expanded", "false");
     }
   });
 
@@ -130,7 +180,49 @@ function setupInfoDropdown() {
     if (
       dropdown.classList.contains("is-open") &&
       !dropdown.contains(event.target) &&
-      event.target !== toggle
+      !toggle.contains(event.target)
+    ) {
+      closeDropdown();
+    }
+  });
+}
+
+function setupDetailDropdown() {
+  const toggle = document.getElementById("detail-toggle");
+  const dropdown = document.getElementById("detail-dropdown");
+
+  function closeDropdown() {
+    dropdown.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+  }
+
+  toggle.addEventListener("click", () => {
+    const isOpen = dropdown.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", String(isOpen));
+    if (isOpen) {
+      const sizeDropdown = document.getElementById("size-dropdown");
+      const sizeToggle = document.getElementById("size-toggle");
+      sizeDropdown.classList.remove("is-open");
+      sizeToggle.setAttribute("aria-expanded", "false");
+
+      const infoDropdown = document.getElementById("info-dropdown");
+      const infoToggle = document.getElementById("info-toggle");
+      infoDropdown.classList.remove("is-open");
+      infoToggle.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && dropdown.classList.contains("is-open")) {
+      closeDropdown();
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (
+      dropdown.classList.contains("is-open") &&
+      !dropdown.contains(event.target) &&
+      !toggle.contains(event.target)
     ) {
       closeDropdown();
     }
@@ -188,6 +280,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupCarousel();
   setupSoldOutButton();
   setupInfoDropdown();
+  setupDetailDropdown();
   setupNavLinks();
   setupNavDropdown("nav-toggle", "site-nav-dropdown");
   setupSizeDropdown();

@@ -98,6 +98,13 @@ function setupSizeDropdown() {
         infoDropdown.classList.remove("is-open");
         infoToggle.setAttribute("aria-expanded", "false");
       }
+
+      const detailDropdown = document.getElementById("detail-dropdown");
+      const detailToggle = document.getElementById("detail-toggle");
+      if (detailDropdown && detailToggle) {
+        detailDropdown.classList.remove("is-open");
+        detailToggle.setAttribute("aria-expanded", "false");
+      }
     }
   });
 
@@ -121,7 +128,7 @@ function setupSizeDropdown() {
     if (
       dropdown.classList.contains("is-open") &&
       !dropdown.contains(event.target) &&
-      event.target !== toggle
+      !toggle.contains(event.target)
     ) {
       closeDropdown();
     }
